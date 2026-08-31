@@ -1,0 +1,1 @@
+SELECT * FROM uae_logistics_db.materials;
