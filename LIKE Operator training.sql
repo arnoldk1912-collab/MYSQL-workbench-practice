@@ -44,3 +44,29 @@ SELECT rating, COUNT(*) AS How_many
 FROM film 
 WHERE title LIKE 'A%'
 GROUP BY rating;
+
+# Combine Wildcards
+# Ar_% = start with "Ar", then exactly 1 more character, then anything after that
+SELECT * FROM customer
+WHERE first_name LIKE 'Ar_%';
+
+# The name must end in "me, and there must be excatly 1 character sitting right befor "me"
+SELECT * FROM customer
+WHERE first_name LIKE '%_me';
+
+SELECT * FROM customer
+WHERE first_name LIKE '%ON%_';
+
+# Starts with "A", then exactly 1 character, then anything, then end with "O"
+SELECT * FROM customer
+WHERE first_name LIKE 'A_%O';
+
+# '________' means at least 8 characters long, then anything after that
+SELECT * FROM customer
+WHERE last_name LIKE '________%'
+LIMIT 25;
+
+# Must contain at least 8 characters somewhere, anything allowed before/after
+SELECT * FROM customer
+WHERE last_name LIKE '%________%'
+LIMIT 15;
