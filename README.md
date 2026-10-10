@@ -1,48 +1,35 @@
-# MYSQL-workbench-practice
+# SQL Practice Portfolio: Sakila Database Analysis
 
-Daily SQL practice in **MySQL Workbench** using the **Sakila sample database**. This repository is a growing collection of queries, experiments, and small exercises written while learning the fundamentals of MySQL.
+This repository is a growing collection of queries, experiments, and small exercises written while learning the fundamentals of **MySQL** using the **Sakila sample database**.
+
+## Sakila EER Diagram
+
+The following diagram provides an overview of the relational structure of the Sakila database, illustrating how tables like `film`, `actor`, `customer`, and `payment` interact.
+
+![Sakila EER Diagram](sakila%20EER%20Diagram.png)
 
 ## About
 
-The files in this repository document hands-on practice with querying and modifying relational data. Most exercises use Sakila tables such as `film`, `actor`, `customer`, `payment`, and `address`.
-
-The goal is to build confidence with SQL syntax, understand how query clauses work together, and track progress over time through short, focused practice sessions.
+The files in this repository document hands-on practice with querying and modifying relational data. The goal is to build confidence with SQL syntax, understand how query clauses work together, and track progress over time through short, focused practice sessions.
 
 ## Topics covered so far
 
 - `SELECT`, `FROM`, and `WHERE`
 - Selecting specific columns and using `DISTINCT`
-- Filtering with comparison operators:
-  - `=`
-  - `!=`
-  - `>`
-  - `<`
-  - `>=`
-  - `<=`
+- Filtering with comparison operators: `=`, `!=`, `>`, `<`, `>=`, `<=`
 - Pattern and range filtering with `LIKE` and `BETWEEN`
 - Handling missing values with `IS NULL` and `IS NOT NULL`
-- Logical operators:
-  - `AND`
-  - `OR`
-  - `NOT`
+- Logical operators: `AND`, `OR`, `NOT`
 - Sorting results with `ORDER BY`, including multiple columns and `ASC`/`DESC`
 - Limiting result sets with `LIMIT`
-- Aggregate functions:
-  - `COUNT()`
-  - `SUM()`
-  - `MIN()`
-  - `MAX()`
-  - `AVG()`
+- Aggregate functions: `COUNT()`, `SUM()`, `MIN()`, `MAX()`, `AVG()`
 - Column aliases with `AS`
 - Grouping aggregate results with `GROUP BY`
 - Subqueries, including comparisons against calculated averages
-- Data modification statements:
-  - `INSERT`
-  - `UPDATE`
-  - `DELETE`
+- Data modification statements: `INSERT`, `UPDATE`, `DELETE`
 - Inspecting database structure with `SHOW TABLES` and `DESCRIBE`
 
-### File guide
+## File Guide
 
 | File or group | Main practice |
 | --- | --- |
@@ -56,7 +43,7 @@ The goal is to build confidence with SQL syntax, understand how query clauses wo
 | `INSERT INTO training.sql`, `Update statement training.sql`, `DELETE Statement.sql` | Data modification statements |
 | `day1.sql`, `day2.sql`, `Untitled.sql` | Short daily exercises |
 
-Some exploratory files also reference the **Chinook** database (`chinook.sql` and parts of the aggregate-function exercises) or another practice schema. These are retained as part of the learning history, while Sakila remains the primary database for this repository.
+*Some exploratory files also reference the **Chinook** database. These are retained as part of the learning history, while Sakila remains the primary database for this repository.*
 
 ## How to run the files
 
@@ -66,18 +53,14 @@ Some exploratory files also reference the **Chinook** database (`chinook.sql` an
 4. Load the Sakila schema and data if it is not already installed.
 5. Open any `.sql` file from this repository.
 6. Select the `sakila` schema in the schema navigator, or run:
-
    ```sql
    USE sakila;
    ```
+7. Execute the whole script or highlight individual statements and run them.
 
-7. Execute the whole script or highlight individual statements and run them with the lightning-bolt button.
-
-Most query files are read-only. The `INSERT`, `UPDATE`, and `DELETE` exercises change data, so run them against a practice copy of Sakila and inspect the affected rows before executing them.
+*Note: Most query files are read-only. `INSERT`, `UPDATE`, and `DELETE` exercises change data—run them against a practice copy of Sakila.*
 
 ## Progress tracking
-
-Progress is tracked by adding new exercises and checking off topics as they are practiced and revisited.
 
 - [x] Basic `SELECT`, `FROM`, and `WHERE`
 - [x] Comparison operators
@@ -97,5 +80,3 @@ Progress is tracked by adding new exercises and checking off topics as they are 
 - [ ] `JOIN` and relationship queries
 - [ ] `HAVING`
 - [ ] More advanced subqueries and reporting queries
-
-As learning continues, new daily SQL files can be added with a short description of the topic practiced. Repeated exercises are encouraged to reinforce syntax and improve query-writing fluency.
