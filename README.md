@@ -6,7 +6,10 @@ This repository is a growing collection of queries, experiments, and small exerc
 
 The following diagram provides an overview of the relational structure of the Sakila database, illustrating how tables like `film`, `actor`, `customer`, and `payment` interact.
 
-![Sakila EER Diagram](sakila%20EER%20Diagram.png)
+
+<p align="center">
+  <img src="sakila_eer_diagram.png" alt="Sakila Database EER Diagram" width="100%">
+</p>
 
 ## About
 
