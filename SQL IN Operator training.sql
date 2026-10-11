@@ -86,8 +86,69 @@ WHERE rating IN (
    WHERE title = 'AFRICAN EGG'
 )
 LIMIT 15;
- 
 
+# multi-table queries
+
+# In the `film` table, you have a `language_id`. If you want to find all movies in the **"English"** language, 
+# you can't do it with just the `film` table, because the `film` table only       │
+# contains a number (`1`), not the word "English"																																																		│
+#    The word "English" lives in a **different** table called `language`. 
+
+SELECT title, language_id, rating
+FROM film
+WHERE language_id IN (
+      SELECT language_id
+      FROM language
+      WHERE name = 'FRENCH'
+      );
+
+UPDATE film
+SET language_id = 5
+WHERE film_id = 10;
+
+# multi-table nested subquery
+
+#    The 5-Year-Old Logic (The "Follow the Breadcrumbs")
+    
+#    You want to find the movies that are Comedy.
+    
+#    Step 1: The Smallest Helper (The Deepest Parenthesis)
+#    sql
+#    SELECT category_id FROM category WHERE name = 'COMEDY'
+    
+#    *   What you did: You opened Folder A. You looked for the word 'COMEDY'. You found it, and you saw the number 5 next to it.
+#    *   Now you have: The number 5.
+    
+#    Step 2: The Middle Helper
+#    sql
+#    SELECT film_id FROM film_category WHERE category_id IN (5)
+    
+#    *   What you did: You took that number 5 and walked over to Folder B (the Map). You looked through all the rows. 
+#        Every time you saw the number 5 in the category_id column, you
+#    wrote down the film_id next to it.
+#    *   Now you have: A piece of paper with a list of numbers, like (10, 22, 50, 99...).
+    
+#    Step 3: The Big Boss (The Outside)
+#    sql
+#    SELECT title, description FROM film WHERE film_id IN (10, 22, 50, 99...)
+    
+#    *   What you did: You took that list of numbers (10, 22, 50, 99...) and walked over to Folder C (the Library). You went down the list: 
+#      "Okay, show me the title for movie #10... show me the title for movie #22..."
+#    *   Result: You get the actual movie names.
+    
+
+
+SELECT film_id, title, description
+FROM film
+WHERE film_id IN (
+      SELECT film_id
+      FROM film_category
+      WHERE category_id IN (
+            SELECT category_id
+            FROM category
+            WHERE name = 'COMEDY')
+	);
+    
 SELECT title 
 FROM film 
 WHERE film_id IN (
@@ -95,5 +156,5 @@ WHERE film_id IN (
         FROM film_category 
         WHERE category_id = (SELECT category_id FROM category WHERE name = 'Action')
     );
-    
+
 
