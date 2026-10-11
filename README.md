@@ -6,7 +6,6 @@ This repository is a growing collection of queries, experiments, and small exerc
 
 The following diagram provides an overview of the relational structure of the Sakila database, illustrating how tables like `film`, `actor`, `customer`, and `payment` interact.
 
-
 <p align="center">
   <img src="sakila_eer_diagram.png" alt="Sakila Database EER Diagram" width="100%">
 </p>
@@ -83,3 +82,37 @@ The files in this repository document hands-on practice with querying and modify
 - [ ] `JOIN` and relationship queries
 - [ ] `HAVING`
 - [ ] More advanced subqueries and reporting queries
+
+## Multi-Table Nested Subquery: Films by Actor
+
+**Goal:** Find all the films that the actor FAY KILMER appeared in.
+
+**Table Path:** `actor.actor_id` -> `film_actor.actor_id`, `film_actor.film_id` -> `film.film_id`
+*Note: `film_actor` serves as the bridge table connecting actors to their respective films.*
+
+![Actor-Film Path](actor_film_path.png)
+
+**Query:** [View actor_films_nested_query.sql](actor_films_nested_query.sql)
+
+```sql
+SELECT film_id, title, length, rating
+FROM film
+WHERE film_id IN (
+    SELECT film_id
+    FROM film_actor
+    WHERE actor_id IN (
+        SELECT actor_id
+        FROM actor
+        WHERE first_name = 'FAY' AND last_name = 'KILMER'
+    )
+);
+```
+
+**How it works:**
+1. The innermost subquery retrieves the unique `actor_id` for "FAY KILMER".
+2. The middle subquery uses that ID to find all `film_id` values associated with her in the bridge table.
+3. The outer query uses those film IDs to pull the title, length, and rating from the main film table.
+
+**Output:**
+![Fay Kilmer Output](fay_kilmer_output.png)
+Returned 20 rows.
