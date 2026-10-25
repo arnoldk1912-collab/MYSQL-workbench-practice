@@ -50,7 +50,17 @@
     INSERT INTO employees VALUES (1, 'Ahmed'), (2, 'Sarah');
     INSERT INTO shifts VALUES (1, '2026-10-24'), (2, '2026-10-24');
     
+CREATE TABLE orders (
+        order_id INT, 
+        employee_id INT, 
+        order_amount DECIMAL(10,2)
+    );
+    
+INSERT INTO orders VALUES (1001, 1, 50.00), (1002, 1, 25.50), (1003, 2, 100.00);
+    
 SELECT * FROM employees;
+SELECT * FROM shifts;
+SELECT * FROM orders;
 
 #   The Theory
 #    A JOIN in SQL is like a bridge. We need three things to build it:
@@ -62,6 +72,9 @@ SELECT employees.name, shifts.shift_date
 FROM employees
 JOIN shifts ON employees.id = shifts.employee_id;
 
+SELECT employees.name, orders.order_amount
+FROM employees
+JOIN orders ON employees.id = orders.employee_id;
 
 SELECT film.title, film_category.category_id
 FROM film
@@ -77,3 +90,17 @@ FROM film
 JOIN film_actor ON film.film_id = film_actor.film_id
 JOIN actor ON film_actor.actor_id = actor.actor_id
 LIMIT 5;
+
+DESCRIBE customer customer;
+DESCRIBE rental rental;
+
+SELECT customer.first_name AS Name, rental.rental_date AS Date
+FROM customer
+JOIN rental ON customer.customer_id = rental.customer_id
+LIMIT 15;
+
+SELECT film. title AS Title, rental.rental_date AS Rental_date
+FROM film
+JOIN inventory ON film.film_id = inventory.film_id
+JOIN rental ON inventory.inventory_id = rental.inventory_id
+LIMIT 15;
