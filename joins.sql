@@ -1,3 +1,7 @@
+    -- Milestone [100th commit]: Successfully built the bridge. 
+    -- "The database isn't smart, but the logic is." 
+    -- SQL logic: INNER JOIN ON [passport_id] = [passport_id]
+
 
 # Our Goal
 #    1. Understand why we need JOINs (the "Disconnected Data" problem).
@@ -104,3 +108,20 @@ FROM film
 JOIN inventory ON film.film_id = inventory.film_id
 JOIN rental ON inventory.inventory_id = rental.inventory_id
 LIMIT 15;
+
+# Filtering With (The WHERE Clause)
+# "Find rows where the ID in the customer folder is the same as the ID in the rental folder. Only match them if they are identical."
+SELECT c.first_name AS First_name, c.last_name AS Last_name, r.rental_date AS date
+FROM customer c
+JOIN rental r ON c.customer_id = r.customer_id
+WHERE c.first_name = 'JOHNNY';
+
+# Counting (The COUNT Function)
+# ---Task---  Count how many movies were rented by JOHNNY 🤔.
+
+SELECT c.first_name AS First_Name, c.last_name AS Last_name, 
+COUNT(r.rental_id) AS TOTAL, c.customer_id
+FROM customer c
+JOIN rental r ON c.customer_id = r.customer_id
+WHERE c.first_name = 'JOHNNY'
+GROUP BY customer_id;
